@@ -30,7 +30,7 @@
                     <div class="schedule">
                         <my-tabs class="themetabs">
                             <div ng-repeat="serv in service">  
-                               
+
                                 <my-tab  icon="ion-ios-videocam tabicon" title="Video"  ng-if="serv == 1">
                                     <my-tabs class="themetabs">
                                         <div ng-if="apkLanguage == 'english'">
@@ -58,10 +58,10 @@
                                                         <div class="clr"></div>
                                                         <div class="item item-body p0 brd-0" ng-repeat="vs in videoSch track by $index">
                                                             <ul class="wk">
-                                                               <!-- <li ng-repeat="day in vs.service_details| orderBy:'' | groupBy:['day_of_week']">
-                                                                    <strong ng-show="day.group_by_CHANGED">{{ day.day_of_week|limitTo:1}} : </strong>
-                                                                    {{day.from|limitTo:2}} - {{day.to|limitTo:2}}
-                                                                </li> -->
+                                                                <!-- <li ng-repeat="day in vs.service_details| orderBy:'' | groupBy:['day_of_week']">
+                                                                     <strong ng-show="day.group_by_CHANGED">{{ day.day_of_week|limitTo:1}} : </strong>
+                                                                     {{day.from|limitTo:2}} - {{day.to|limitTo:2}}
+                                                                 </li> -->
                                                             </ul>
                                                             <div class="sche-date">
                                                                 <div class="leftarrow" ng-click="getFirstSlots(vs.supersaas_id, $index, serv)">Earliest Slot</div> 
@@ -111,10 +111,10 @@
                                                         <div class="clr"></div>
                                                         <div class="item item-body p0 brd-0" ng-repeat="vs in videoSch track by $index">
                                                             <ul class="wk">
-                                                               <!-- <li ng-repeat="day in vs.service_details| orderBy:'' | groupBy:['day_of_week']">
-                                                                    <strong ng-show="day.group_by_CHANGED">{{ day.day_of_week|limitTo:1}} : </strong>
-                                                                    {{day.from|limitTo:2}} - {{day.to|limitTo:2}}
-                                                                </li> -->
+                                                                <!-- <li ng-repeat="day in vs.service_details| orderBy:'' | groupBy:['day_of_week']">
+                                                                     <strong ng-show="day.group_by_CHANGED">{{ day.day_of_week|limitTo:1}} : </strong>
+                                                                     {{day.from|limitTo:2}} - {{day.to|limitTo:2}}
+                                                                 </li> -->
                                                             </ul>
                                                             <div class="sche-date">
                                                                 <div class="leftarrow" ng-click="getFirstSlots(vs.supersaas_id, $index, serv)">{{earliest_slot[language]}}</div> 
@@ -212,9 +212,6 @@
                                                         {{day.from|limitTo:2}} - {{day.to|limitTo:2}}
                                                     </li>
                                                 </ul>-->
-                                                <div class="full addr hide" id = {{cs.id}}full>{{cs.address}}</div>
-                                                <div class="short addr" id = {{cs.id}}short>{{cs.address.substring(0,30)}}</div>
-                                                <input type = "button" class ="toggle" id= {{cs.id}} ng-click="toggleaddress({{cs.id}})" value="..."></div>
                                                 <div class="sche-date">
                                                     <div class="leftarrow" ng-click="getFirstSlots(cs.supersaas_id, $index, serv)">Earliest Slot</div> 
                                                     <input type="date" ng-model="schCdate[$index]" value="schCdate[$index]|dateFormat1" ng-change="getNextSlots(schCdate[$index], cs.supersaas_id, $index, serv)"/>
@@ -235,7 +232,7 @@
                                                 <a class="button button-full button-positive" ng-click="bookAppointment(clinicProd.id, serv)">Proceed </a>
                                             </div>	
                                         </div>
-                                    
+                                    </div>
                                 </my-tab>
                                 <my-tab  icon="ion-chatboxes tabicon" title="Chat" ng-if="serv == 2">
                                     <div class="tabc2">

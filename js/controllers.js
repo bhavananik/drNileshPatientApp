@@ -4613,7 +4613,7 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
                     });
                 });
                 angular.forEach($scope.clinicSch, function (value, key) {
-                    var supsassId = value.supersaas_id
+                    var supsassId = value.supersaas_id;
                     $http({
                         method: 'GET',
                         url: domain + 'doctors/get-doctors-availability',
@@ -4633,6 +4633,7 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
                             tomorrow.setDate(tomorrow.getDate() + 1);
                             $scope.nextCdate[key] = $filter('date')(new Date(tomorrow), 'yyyy-MM-dd');
                         }
+
                         $rootScope.$digest;
                     }, function errorCallback(response) {
                         console.log(response);
