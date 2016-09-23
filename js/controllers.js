@@ -6803,11 +6803,11 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
                 var timeDiff = getTimeDiff(startTime, curtime);
                 console.log(timeDiff);
                 if (timeDiff < 15) {
-                    alert("Appointment can not be reschedule now!");
+                    alert("Sorry. The time limit to reschedule this appointment has expired!");
                 } else if (timeDiff > 15) {
                     if (mode == 1) {
                         if (timeDiff < 60) {
-                            alert("Appointment can not be reschedule now!");
+                            alert("Sorry. The time limit to reschedule this appointment has expired!");
                         } else {
                             console.log('redirect');
                             window.localStorage.setItem('appId', appId);
