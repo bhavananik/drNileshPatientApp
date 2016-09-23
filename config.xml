@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<widget xmlns="http://www.w3.org/ns/widgets"  xmlns:gap="http://phonegap.com/ns/1.0" id="com.newalpha.patient" version="0.0.3">
+<widget xmlns="http://www.w3.org/ns/widgets"  xmlns:gap="http://phonegap.com/ns/1.0" id="com.drnilesh.patient" version="0.0.1">
  
-    <name>Hope Doctors</name>
+    <name>Doctors Nilesh</name>
     <preference name="orientation" value="default" />
     <preference name="fullscreen" value="false" />
 	<preference name="SplashScreen" value="splash" />
@@ -10,7 +10,7 @@
     <gap:platform name="ios" />
     <gap:platform name="android" />
     <description>
-      Hope Doctors Health App
+      Doctors Nilesh's Health App
     </description> 
     <author href="http://www.infinisystem.com" email="support@infiniteit.biz">
         Infini Systems
