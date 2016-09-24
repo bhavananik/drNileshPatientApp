@@ -4573,7 +4573,10 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
                 $scope.packages = response.data.packages;
                 $scope.services = response.data.services;
                 $scope.service = response.data.service;
-                $scope.instant_video = response.data.instant_video;
+                $scope.video = response.data.video;
+                $scope.chat = response.data.chat;
+                $scope.clinic = response.data.clinic;
+                $scope.home = response.data.home;
                 $scope.procced = response.data.procced;
                 $scope.scheduled_video = response.data.scheduled_video;
                 $scope.earliest_slot = response.data.earliest_slot;

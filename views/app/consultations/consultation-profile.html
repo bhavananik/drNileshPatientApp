@@ -31,7 +31,7 @@
                         <my-tabs class="themetabs">
                             <div ng-repeat="serv in service">  
 
-                                <my-tab  icon="ion-ios-videocam tabicon" title="Video"  ng-if="serv == 1">
+                                <my-tab  icon="ion-ios-videocam tabicon" title="{{apkLanguage == 'english'? 'Video': video[language]}}"  ng-if="serv == 1">
                                     <my-tabs class="themetabs">
                                         <div ng-if="apkLanguage == 'english'">
                                             <my-tab icon="ion-calendar tabicon" title="Scheduled Video" >
@@ -183,7 +183,7 @@
                                         </div>
                                     </my-tabs>
                                 </my-tab>
-                                <my-tab  icon="ion-medkit tabicon" title="Clinic"  ng-if="serv == 3">
+                                <my-tab  icon="ion-medkit tabicon" title="{{apkLanguage == 'english'? 'Clinic': clinic[language]}}"  ng-if="serv == 3">
                                     <div class="tabc2">
                                         <div class="item-price">Price : INR {{clinicProd.interfacePrice|ceil}}</div>
                                         <div class="mt15"> 
@@ -216,7 +216,7 @@
                                                     <div class="leftarrow" ng-click="getFirstSlots(cs.supersaas_id, $index, serv)">Earliest Slot</div> 
                                                     <input type="date" ng-model="schCdate[$index]" value="schCdate[$index]|dateFormat1" ng-change="getNextSlots(schCdate[$index], cs.supersaas_id, $index, serv)"/>
                                                     <input type="hidden" ng-model="nextCdate[$index]" value="nextCdate[$index]|datetime"/>
-                                                    <div class="rightarrow" ng-click="getNextSlots(nextCdate, cs.supersaas_id, $index, serv)">Next Slot</div>
+                                                    <div class="rightarrow" ng-click="getNextSlots(nextCdate, cs.supersaas_id, $index, serv)">{{apkLanguage == 'english'? 'Next Slot': next_slot[language]}}</div>
                                                 </div>
                                                 <div ng-if="schC[$index] == cs.supersaas_id">
                                                     {{cSch[$index]==''? 'No slots available':''}}
@@ -234,7 +234,7 @@
                                         </div>
                                     </div>
                                 </my-tab>
-                                <my-tab  icon="ion-chatboxes tabicon" title="Chat" ng-if="serv == 2">
+                                <my-tab  icon="ion-chatboxes tabicon" title="{{apkLanguage == 'english'? 'Chat': chat[language]}}" ng-if="serv == 2">
                                     <div class="tabc2">
                                         <div class="item-price">Price : INR {{chatProd.interfacePrice|ceil}}</div>
                                         <div class="tabcontainer"> 
