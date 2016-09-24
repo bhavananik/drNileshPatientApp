@@ -31,7 +31,6 @@
        
         <div class="list catlist mtm-5" ng-if="apkLanguage == 'english'" > 
             
-          
             <div ng-repeat="menu in menuItem">
                 <span ng-if="menu.intereface_menu.menu == 'consultations' && menu.intereface_menu.menu != 'settings'">
                     <a class="item item-icon-right" ng-click="{{menu.url}}"  >
@@ -72,7 +71,7 @@
         </div>
 
         <div class="list catlist mtm-5" ng-if="apkLanguage != 'english'">
-       
+      
             <div ng-repeat="menu in menuItem">
                 <span ng-if="menu.intereface_menu.menu == 'consultations' && menu.intereface_menu.menu != 'settings'">
                     <a class="item item-icon-right" ng-click="{{menu.url}}">
