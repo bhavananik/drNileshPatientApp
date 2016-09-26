@@ -1808,6 +1808,16 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
                 }
             };
 
+            $scope.getEnd = function () {
+                //console.log(stdt + " === " + $scope.nodays + " === " + endDate);
+                var noDays = $('#dietdays').val();
+                var startDate = $filter('date')(($('#diet-start').val()), 'yyyy-MM-dd');
+                var enDate = getDayAfter(startDate, noDays);
+                console.log(startDate + " === " + noDays + " === " + enDate);
+                console.log($filter('date')(enDate, 'yyyy-MM-dd'));
+                $('#diet-end').val($filter('date')(enDate, 'yyyy-MM-dd'));
+            };
+
             $ionicModal.fromTemplateUrl('mealdetails', {
                 scope: $scope
             }).then(function (modal) {
