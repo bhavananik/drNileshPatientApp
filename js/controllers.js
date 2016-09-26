@@ -64,7 +64,7 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
                 $scope.showLogin = true;
                 $scope.registerToggle = function () {
                     $scope.showLogin = !$scope.showLogin;
-                }
+                };
                 $scope = scope || $scope;
                 $scope.viewLogin = true;
                 $ionicModal.fromTemplateUrl('views/app/generic_login.html', {
@@ -116,6 +116,24 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
                                     }).then(function successCallback(response) {
                                     }, function errorCallback(e) {
                                         console.log(e);
+                                    });
+                                    $http({
+                                        method: 'GET',
+                                        url: domain + 'get-login',
+                                        params: {id: window.localStorage.getItem('id'), interface: $scope.interface}
+                                    }).then(function successCallback(response) {
+                                        console.log(response.data.lang.language);
+                                        $scope.langtext = response.data.data;
+                                        $scope.language = response.data.lang.language;
+                                        if (response.data) {
+                                            //$scope.apkLanguage = window.localStorage.setItem('apkLanguage', response.data.lang.language);
+                                            $rootScope.apkLanguage = response.data.lang.language;
+                                            window.localStorage.setItem('apkLanguage', response.data.lang.language);
+                                        } else {
+
+                                        }
+                                    }, function errorCallback(response) {
+                                        console.log(response);
                                     });
 
                                     try {
@@ -365,6 +383,9 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
             });
 
             $rootScope.$on("sideMenu", function () {
+                $scope.sideMenu();
+            });
+            $scope.sideMenu = function () {
                 $ionicLoading.show({template: 'Loading..'});
                 $http({
                     method: 'GET',
@@ -384,7 +405,7 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
                 }, function errorCallback(response) {
                     // console.log(response);
                 });
-            });
+            }
 
             $scope.logout = function () {
                 $ionicLoading.show({template: 'Logging out....'});
@@ -393,26 +414,25 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
                     url: domain + 'get-login-logout-log',
                     params: {userId: window.localStorage.getItem('id'), interface: $scope.interface, type: $scope.userType, action: $scope.action}
                 }).then(function successCallback(response) {
-
+                    window.localStorage.clear();
+                    $rootScope.userLogged = 0;
+                    $rootScope.$digest;
+                    $timeout(function () {
+                        $ionicLoading.hide();
+                        $ionicHistory.clearCache();
+                        $ionicHistory.clearHistory();
+                        $ionicHistory.nextViewOptions({disableBack: true, historyRoot: true});
+                        //$state.go('auth.walkthrough', {}, {reload: true});
+                        window.localStorage.setItem('apkLanguage', 'english');
+                        window.localStorage.setItem('interface_id', '15');
+                        $scope.sideMenu();
+                        // $state.reload('app.category-list');
+                    }, 30);
                 }, function errorCallback(e) {
                     console.log(e);
                 });
-
-                window.localStorage.clear();
-                $rootScope.userLogged = 0;
-                $rootScope.$digest;
-                $timeout(function () {
-                    $ionicLoading.hide();
-                    $ionicHistory.clearCache();
-                    $ionicHistory.clearHistory();
-                    $ionicHistory.nextViewOptions({disableBack: true, historyRoot: true});
-                    //$state.go('auth.walkthrough', {}, {reload: true});
-                    window.localStorage.setItem('apkLanguage', 'english');
-                    window.localStorage.setItem('interface_id', '15');
-                    $state.go('app.category-list');
-                }, 30);
-
             };
+
             $scope.checkCat = function () {
                 console.log('console');
                 $http({
@@ -437,14 +457,13 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
             };
 
             $scope.checkRedirect = function (url) {
-                // alert(url);
+                 alert(url);
+                 console.log(url);
                 $rootScope.$broadcast('showLoginModal', $scope, function () {
                     console.log("logged in fail");
-
                 }, function () {
                     console.log("succesfully logged in");
-                    $state.go(url);
-
+                        $state.transitionTo(url, {}, {reload: true, inherite: false});
                 });
             }
 
@@ -470,7 +489,9 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
                 $scope.langtext = response.data.data;
                 $scope.language = response.data.lang.language;
                 if (response.data) {
-                    $scope.apkLanguage = window.localStorage.setItem('apkLanguage', response.data.lang.language);
+                    //$scope.apkLanguage = window.localStorage.setItem('apkLanguage', response.data.lang.language);
+                    $rootScope.apkLanguage = response.data.lang.language;
+                    window.localStorage.setItem('apkLanguage', response.data.lang.language);
                 } else {
 
                 }
@@ -504,6 +525,26 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
                             }).then(function successCallback(response) {
                             }, function errorCallback(e) {
                                 console.log(e);
+                            });
+
+                            $http({
+                                method: 'GET',
+                                url: domain + 'get-login',
+                                params: {id: window.localStorage.getItem('id'), interface: $scope.interface}
+                            }).then(function successCallback(response) {
+                                console.log(response.data.lang.language);
+                                $scope.langtext = response.data.data;
+                                $scope.language = response.data.lang.language;
+                                if (response.data) {
+                                    //$scope.apkLanguage = window.localStorage.setItem('apkLanguage', response.data.lang.language);
+                                    $rootScope.apkLanguage = response.data.lang.language;
+                                    window.localStorage.setItem('apkLanguage', response.data.lang.language);
+
+                                } else {
+
+                                }
+                            }, function errorCallback(response) {
+                                console.log(response);
                             });
 
                             try {
@@ -584,7 +625,7 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
                 $ionicHistory.clearCache();
                 $ionicHistory.clearHistory();
                 $ionicHistory.nextViewOptions({disableBack: true, historyRoot: true});
-                $state.go('auth.walkthrough', {}, {reload: true});
+                $state.reload('app.category-list');
             }, 30);
 
         })
@@ -866,7 +907,7 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
             });
         })
 
-//bring specific category providers
+          //bring specific category providers
 
         .controller('CategoryListCtrl', function ($scope, $state, $http, $stateParams, $rootScope, $ionicLoading) {
             if (get('id') != null) {
@@ -877,28 +918,35 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
             window.localStorage.setItem('interface_id', '15');
             $scope.interface = window.localStorage.getItem('interface_id');
             $scope.userId = window.localStorage.getItem('id');
-           // window.localStorage.setItem('apkLanguage', 'english');
-            $scope.apkLanguage = window.localStorage.getItem('apkLanguage');
+            if (get('id') != null) {
+                $http({
+                    method: 'GET',
+                    url: domain + 'get-login',
+                    params: {id: window.localStorage.getItem('id'), interface: $scope.interface}
+                }).then(function successCallback(response) {
+                    console.log(response.data.lang.language);
+                    $scope.langtext = response.data.data;
+                    $scope.language = response.data.lang.language;
+                    if (response.data) {
+
+                        $rootScope.apkLanguage = response.data.lang.language;
+                        window.localStorage.setItem('apkLanguage', response.data.lang.language);
+                        //window.location.reload();
+                    } else {
+
+                    }
+                }, function errorCallback(response) {
+                    // console.log(response);
+                });
+            } else {
+                window.localStorage.setItem('apkLanguage', 'english');
+                $scope.apkLanguage = window.localStorage.getItem('apkLanguage');
+            }
+            // window.localStorage.setItem('apkLanguage', 'english');
+
             $ionicLoading.show({template: 'Loading..'});
-            $http({
-                method: 'GET',
-                url: domain + 'get-login',
-                params: {id: window.localStorage.getItem('id'), interface: $scope.interface}
-            }).then(function successCallback(response) {
-                console.log(response.data.lang.language);
-                $scope.langtext = response.data.data;
-                $scope.language = response.data.lang.language;
-                if (response.data) {
 
-                    $rootScope.apkLanguage = response.data.lang.language;
-                    window.localStorage.setItem('apkLanguage', response.data.lang.language);
-                } else {
-
-                }
-            }, function errorCallback(response) {
-                // console.log(response);
-            });
-
+            console.log("lang  " + window.localStorage.getItem('apkLanguage'))
             $http({
                 method: 'GET',
                 url: domain + 'get-categoty-lang',
@@ -933,13 +981,13 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
                 // alert(url);
                 $rootScope.$broadcast('showLoginModal', $scope, function () {
                     console.log("logged in fail");
-
                 }, function () {
-                    console.log("succesfully logged in");
-                    $state.go(url);
-
-                });
+//                    console.log("succesfully logged in");
+//                    $state.go(url);
+                        $state.transitionTo(url, {}, {reload: true, inherite: false});
+                    });
             }
+            
         })
 
         .controller('PatientSettingsCtrl', function ($scope, $http, $ionicPlatform, $state, $stateParams, $timeout, $ionicModal, $ionicLoading, $rootScope, $sce) {
@@ -7107,7 +7155,7 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
                 $http({
                     method: 'GET',
                     url: domain + 'tracker/update-reminder',
-                    params: {userId: window.localStorage.getItem('id'),interface: $scope.interface , aid: $scope.card, captured: 3}
+                    params: {userId: window.localStorage.getItem('id'), interface: $scope.interface, aid: $scope.card, captured: 3}
                 }).then(function sucessCallback(response) {
 
 
@@ -7124,7 +7172,7 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
                 $http({
                     method: 'GET',
                     url: domain + 'tracker/update-reminder',
-                    params: {userId: window.localStorage.getItem('id'),interface: $scope.interface , aid: $scope.card, captured: 2}
+                    params: {userId: window.localStorage.getItem('id'), interface: $scope.interface, aid: $scope.card, captured: 2}
                 }).then(function sucessCallback(response) {
 
 
