@@ -127,7 +127,9 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
 
                                             window.localStorage.setItem('apkLanguage', response.data.lang.language);
                                             $scope.apkLanguage = window.localStorage.getItem('apkLanguage');
-                                            $scope.sideMenu();
+                                           // $scope.sideMenu();
+                                           
+                                          // window.location.reload();
 
                                         }, function errorCallback(response) {
                                             console.log(response);
@@ -979,27 +981,7 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
             if (get('id') != null) {
                 $scope.apkLanguage = window.localStorage.getItem('apkLanguage');
                 $scope.getcatlang();
-//                $http({
-//                    method: 'GET',
-//                    url: domain + 'get-login',
-//                    params: {id: window.localStorage.getItem('id'), interface: $scope.interface}
-//                }).then(function successCallback(response) {
-//                    console.log(response.data.lang.language);
-//                    $scope.langtext = response.data.data;
-//                    $scope.language = response.data.lang.language;
-//                    console.log("lang  IF " + window.localStorage.getItem('apkLanguage')+" ### "+response.data.lang.language);
-//                    if(response.data.lang.language != window.localStorage.getItem('apkLanguage')){
-//                        $scope.sideMenu();
-//                    }
-//                    window.localStorage.setItem('apkLanguage', response.data.lang.language);
-//                    $scope.apkLanguage = window.localStorage.getItem('apkLanguage');
-//                    $scope.getcatlang();
-//                    $scope.updatesideMenu();
 
-
-//                }, function errorCallback(response) {
-//
-//                });
                 console.log("lang  IF " + window.localStorage.getItem('apkLanguage'));
             } else {
                 window.localStorage.setItem('apkLanguage', 'english');
