@@ -127,9 +127,9 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
 
                                             window.localStorage.setItem('apkLanguage', response.data.lang.language);
                                             $scope.apkLanguage = window.localStorage.getItem('apkLanguage');
-                                            $scope.sideMenu();
+                                            //$scope.sideMenu();
                                            
-                                          // window.location.reload();
+                                            window.location.reload();
 
                                         }, function errorCallback(response) {
                                             console.log(response);
