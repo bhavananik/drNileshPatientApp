@@ -8,8 +8,8 @@ $(document).ready(function () {
         $rootScope.$apply(function () {
             $rootScope.userLogged = 1;
             $rootScope.username = window.localStorage.getItem('fname');
-            if (document.location.hash == "#/auth/login" || document.location.hash == "#/auth/walkthrough")
-                window.location.href = "#/app/category-listing";
+            //if (document.location.hash == "#/auth/login" || document.location.hash == "#/auth/walkthrough")
+            //    window.location.href = "#/app/category-listing";
         });
     } else {
         $rootScope.$apply(function () {
