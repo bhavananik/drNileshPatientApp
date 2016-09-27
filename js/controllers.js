@@ -451,7 +451,7 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
                         window.localStorage.setItem('apkLanguage', 'english');
                         window.localStorage.setItem('interface_id', '15');
                         $scope.sideMenu();
-                        $state.reload('app.category-list');
+                        $state.go('app.category-list');
                     }, 30);
                 }, function errorCallback(e) {
                     console.log(e);
@@ -653,7 +653,7 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
                 $ionicHistory.clearCache();
                 $ionicHistory.clearHistory();
                 $ionicHistory.nextViewOptions({disableBack: true, historyRoot: true});
-                $state.reload('app.category-list');
+                $state.go('app.category-list');
             }, 30);
 
         })
