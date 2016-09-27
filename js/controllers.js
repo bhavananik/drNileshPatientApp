@@ -978,6 +978,7 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
 
             if (get('id') != null) {
                 $scope.apkLanguage = window.localStorage.getItem('apkLanguage');
+                $scope.getcatlang();
 //                $http({
 //                    method: 'GET',
 //                    url: domain + 'get-login',
@@ -1003,7 +1004,7 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
             } else {
                 window.localStorage.setItem('apkLanguage', 'english');
                 $scope.apkLanguage = window.localStorage.getItem('apkLanguage');
-//                $scope.getcatlang();
+                $scope.getcatlang();
 //                 $scope.updatesideMenu();
 
                 console.log("lang Else " + window.localStorage.getItem('apkLanguage'));
