@@ -53,7 +53,7 @@
                 <span ng-if="userLogged == 0">
                     <a class="item item-icon-right" ng-click="checkRedirect(menu.url)" ng-if="menu.intereface_menu.menu != 'consultations' && menu.intereface_menu.menu != 'settings'" >
                         <i class="cicon
-                           {{menu.intereface_menu.menu=='records'? 'ion-folder': menu.intereface_menu.menu=='your chats'? 'ion-chatboxes':menu.intereface_menu.menu=='packages'? 'ion-cube':menu.intereface_menu.menu=='library'? 'ion-ios-book':menu.intereface_menu.menu=='pathology'? 'ion-erlenmeyer-flask':menu.intereface_menu.menu=='medicines'? 'ion-medkit': 'ion-cube'}}"></i>
+                           {{menu.intereface_menu.menu=='records'? 'ion-folder': menu.intereface_menu.menu=='your chats'? 'ion-chatboxes': menu.intereface_menu.menu=='chats'? 'ion-chatboxes':menu.intereface_menu.menu=='packages'? 'ion-cube':menu.intereface_menu.menu=='library'? 'ion-ios-book':menu.intereface_menu.menu=='pathology'? 'ion-erlenmeyer-flask':menu.intereface_menu.menu=='medicines'? 'ion-medkit': 'ion-cube'}}"></i>
                         <span class="ctitle"> {{menu.intereface_menu.menu|capitalizeEach}}</span>	
 
                     </a>
@@ -61,7 +61,7 @@
                 <span ng-if="userLogged == 1">
                     <a class="item item-icon-right"  ui-sref="{{menu.url}}" ng-if="menu.intereface_menu.menu != 'consultations' && menu.intereface_menu.menu != 'settings'" >
                         <i class="cicon
-                           {{menu.intereface_menu.menu=='records'? 'ion-folder': menu.intereface_menu.menu=='your chats'? 'ion-chatboxes':menu.intereface_menu.menu=='packages'? 'ion-cube':menu.intereface_menu.menu=='library'? 'ion-ios-book':menu.intereface_menu.menu=='pathology'? 'ion-erlenmeyer-flask':menu.intereface_menu.menu=='medicines'? 'ion-medkit': 'ion-cube'}}"></i>
+                           {{menu.intereface_menu.menu=='records'? 'ion-folder': menu.intereface_menu.menu=='your chats'? 'ion-chatboxes': menu.intereface_menu.menu=='chats'? 'ion-chatboxes':menu.intereface_menu.menu=='packages'? 'ion-cube':menu.intereface_menu.menu=='library'? 'ion-ios-book':menu.intereface_menu.menu=='pathology'? 'ion-erlenmeyer-flask':menu.intereface_menu.menu=='medicines'? 'ion-medkit': 'ion-cube'}}"></i>
                         <span class="ctitle"> {{menu.intereface_menu.menu|capitalizeEach}}</span>	
 
                     </a>

@@ -347,8 +347,6 @@ angular.module('your_app_name', [
                         },
                         controller: 'ForgotPasswordCtrl'
                     })
-                    
-                    
 
                     .state('app', {
                         url: "/app",
@@ -356,9 +354,8 @@ angular.module('your_app_name', [
                         templateUrl: "views/app/side-menu.html",
                         controller: 'AppCtrl'
                     })
-                    
-                    
-                     .state('app.change-password', {
+
+                    .state('app.change-password', {
                         url: "/change-password",
                         views: {
                             'menuContent': {
@@ -510,6 +507,7 @@ angular.module('your_app_name', [
                             }
                         }
                     })
+
                     .state('app.chat-video-share', {
                         cache: false,
                         url: "/chat-video-share",
@@ -546,6 +544,18 @@ angular.module('your_app_name', [
                         }
                     })
 
+                    .state('app.pastchat', {
+                        url: "/pastchat/{id:string}",
+                        views: {
+                            'menuContent': {
+                                templateUrl: function () {
+                                    return "views/app/pastchat.html";
+                                },
+                                controller: 'PastChatCtrl'
+                            }
+                        }
+                    })
+                    
                     .state('app.view-chat-video', {
                         cache: false,
                         url: "/view-chat-video/{id:string}",
@@ -579,7 +589,6 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-
 
                     .state('app.patient-settings', {
                         cache: false,

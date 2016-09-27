@@ -6113,7 +6113,6 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
                     $ionicScrollDelegate.scrollBottom([true]);
                 }, 500);
             };
-
             $scope.getchatsharedata = function () {
                 $state.go('app.chat-video-share', {reload: true});
 
@@ -6124,14 +6123,15 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
         .controller('PastChatCtrl', function ($scope, $ionicLoading, $http, $stateParams, $timeout, $filter) {
             $scope.chatId = $stateParams.id;
             window.localStorage.setItem('chatId', $stateParams.id);
-            $scope.partId = window.localStorage.getItem('id');
+            $scope.partId = get('id');
+            $scope.interface = get('interface_id');
+            $scope.apkLanguage = get('apkLanguage');
             $scope.msg = '';
-            // var apiKey = '45121182';
-            //console.log($scope.chatId);
+            $scope.chatMsgs = [];
             $http({
                 method: 'GET',
                 url: domain + 'doctorsapp/get-chat-token-past',
-                params: {chatId: $scope.chatId, userId: $scope.partId}
+                params: {chatId: $scope.chatId, userId: $scope.partId, interface: $scope.interface}
             }).then(function sucessCallback(response) {
                 console.log(response.data);
                 $scope.user = response.data.user;
@@ -6140,6 +6140,17 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
                 $scope.sessionId = response.data.chatSession;
                 $scope.chatActive = response.data.chatActive;
                 $scope.apiKey = response.data.apiKey;
+                //keygeneration
+                var phone1 = $scope.user.phone;
+                var phone2 = $scope.otherUser.phone;
+                var passphrase = "9773001965";
+                if (phone1 > phone2) {
+                    passphrase = phone1 + phone2;
+                } else {
+                    passphrase = phone2 + phone1;
+                }
+                privateKey = cryptico.generateRSAKey(passphrase, 1024);
+                publicKey = cryptico.publicKeyString(privateKey);
                 console.log(response.data.chatMsgs);
                 // $scope.apiKey = apiKey;
                 // var session = OT.initSession($scope.apiKey, $scope.sessionId);
@@ -6166,29 +6177,27 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
                 $ionicLoading.show({template: 'Retrieving messages...'});
                 $(function () {
                     angular.forEach($scope.chatMsgs, function (value, key) {
+                        value.message = decrypt(value.message);
                         var msgTime = $filter('date')(new Date(value.tstamp), 'd MMM, yyyy - HH:mm a');
                         if (value.sender_id == $scope.partId) {
                             $ionicLoading.hide();
-                            $('#chat .ot-textchat .ot-bubbles').append('<section class="ot-bubble mine" data-sender-id=""><div><header class="ot-bubble-header"><p class="ot-message-sender"></p><time class="ot-message-timestamp">' + msgTime + '</time></header><div class="ot-message-content">' + value.message + '</div></div></section>');
+                            $('#pchat .ot-textchat .ot-bubbles').append('<section class="ot-bubble mine" data-sender-id=""><div><header class="ot-bubble-header"><p class="ot-message-sender"></p><time class="ot-message-timestamp">' + msgTime + '</time></header><div class="ot-message-content">' + value.message + '</div></div></section>');
                         } else {
                             $ionicLoading.hide();
-                            $('#chat .ot-textchat .ot-bubbles').append('<section class="ot-bubble" data-sender-id=""><div><header class="ot-bubble-header"><p class="ot-message-sender"></p><time class="ot-message-timestamp">' + msgTime + '</time></header><div class="ot-message-content">' + value.message + '</div></div></section>');
+                            $('#pchat .ot-textchat .ot-bubbles').append('<section class="ot-bubble" data-sender-id=""><div><header class="ot-bubble-header"><p class="ot-message-sender"></p><time class="ot-message-timestamp">' + msgTime + '</time></header><div class="ot-message-content">' + value.message + '</div></div></section>');
                         }
                     });
-                })
+                });
             };
 
             $scope.movebottom = function () {
                 jQuery(function () {
                     var dh = $('.ot-bubbles').height();
                     $('.chatscroll').scrollTop(dh);
-                    //	console.log(wh);
-
-                })
+                });
             };
 
             $timeout(function () {
-
                 $scope.appendprevious();
                 $scope.movebottom();
             }, 1000);

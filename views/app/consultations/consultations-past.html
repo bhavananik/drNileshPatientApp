@@ -11,15 +11,15 @@
     <ion-content>
         <ion-refresher pulling-text="Pull to refresh..."  on-refresh="doRefresh()">
         </ion-refresher>
-        
+
         <div class="row tabnav" ng-if="apkLanguage == 'english'">
-<!--            <div class="col"><a nav-clear menu-close ng-click="checkCat()" >Book</a></div>-->
+            <!--            <div class="col"><a nav-clear menu-close ng-click="checkCat()" >Book</a></div>-->
             <div class="col"><a nav-clear menu-close ui-sref="app.consultations-current" >Active</a></div>
             <div class="col"><a nav-clear menu-close ui-sref="app.consultations-past" class="active">Past</a></div>
         </div>
 
         <div class="row tabnav"ng-if="apkLanguage != 'english'">
-<!--            <div class="col"><a nav-clear menu-close ng-click="checkCat()" >{{langtext.book[language]}}</a></div>-->
+            <!--            <div class="col"><a nav-clear menu-close ng-click="checkCat()" >{{langtext.book[language]}}</a></div>-->
             <div class="col"><a nav-clear menu-close ui-sref="app.consultations-current" >{{langtext.active[language]}}</a></div>
             <div class="col"><a nav-clear menu-close ui-sref="app.consultations-past" class="active">{{langtext.past[language]}}</a></div>
         </div>
@@ -62,10 +62,7 @@
                                             <div class="row cardbtn-small p0">
                                                 <div class="cardpast-bar {{vAppPast.status==3 ?'fgreen':'fred'}}">
                                                     <i class="{{vAppPast.status==3 ?'ion-checkmark':'ion-close'}}"></i>
-                                                    {{vAppPast.video_app.status==4 ? 'Cancelled':''}}
-                                                    {{vAppPast.video_app.status==6 ? 'Patient no-show':''}}
-                                                    {{vAppPast.video_app.status==7 ? 'Doctor no-show':''}}
-                                                    {{vAppPast.video_app.status==3 ? 'Consulted':''}}
+                                                    {{vAppPast.video_app.status==4 ? 'Cancelled':vAppPast.video_app.status==5?'Cancelled by patient':vAppPast.video_app.status==8?'Cancelled by doctor':vAppPast.video_app.status==6 ? 'Patient no-show':vAppPast.video_app.status==7 ? 'Doctor no-show':vAppPast.video_app.status==3 ? 'Consulted':'Cancelled'}}
 
                                                 </div>
                                             </div>
@@ -79,7 +76,6 @@
 
                         </div>
                     </my-tab>
-                 <!--   
                     <my-tab title="Clinic : {{clinic_app_past.length}}">
                         <div class="tabcontainer p0" >
                             <p class="txt-center">  {{clinic_app_past.length==0 ? 'Nothing to see here. Book a consult to get going.':''}}</p>
@@ -102,10 +98,7 @@
                                             <div class="row cardbtn-small p0">
                                                 <div class="cardpast-bar {{cAppPast.clinic_app.status==3 ?'fgreen':'fred'}}">
                                                     <i class="{{cAppPast.clinic_app.status==3 ?'ion-checkmark':'ion-close'}}"></i>
-                                                    {{cAppPast.clinic_app.status==4 ? 'Cancelled':''}}
-                                                    {{cAppPast.clinic_app.status==6 ? 'Patient no-show':''}}
-                                                    {{cAppPast.clinic_app.status==7 ? 'Doctor no-show':''}}
-                                                    {{cAppPast.clinic_app.status==3 ? 'Consulted':''}}
+                                                    {{cAppPast.clinic_app.status==4 ? 'Cancelled':cAppPast.clinic_app.status==5?'Cancelled by patient':cAppPast.clinic_app.status==8?'Cancelled by doctor':cAppPast.clinic_app.status==6 ? 'Patient no-show':cAppPast.clinic_app.status==7 ? 'Doctor no-show':cAppPast.clinic_app.status==3 ? 'Consulted':''}}
 
                                                 </div>
                                             </div>
@@ -119,7 +112,7 @@
 
                         </div>
                     </my-tab>
-                    -->
+
                 </my-tabs>
             </div>
         </div>

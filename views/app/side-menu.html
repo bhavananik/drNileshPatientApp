@@ -65,7 +65,7 @@
                 <div class="clr"></div>
                 <div class="item-bgnone" ng-if="userLogged == 1">
                     <ion-item class="item-icon-left logoutbtn" ng-repeat="menu in menuItem" nav-clear menu-close ng-if="menu.intereface_menu.menu != 'consultations'" ui-sref="{{menu.url}}" >
-                        <i class="icon {{menu.intereface_menu.menu=='settings'? 'ion-gear-a':menu.intereface_menu.menu=='records'? 'ion-folder': menu.intereface_menu.menu=='your chats'? 'ion-chatboxes':menu.intereface_menu.menu=='packages'? 'ion-cube':menu.intereface_menu.menu=='library'? 'ion-ios-book':menu.intereface_menu.menu=='pathology'? 'ion-erlenmeyer-flask':menu.intereface_menu.menu=='medicines'? 'ion-medkit':menu.intereface_menu.menu=='reminder'? 'ion-cube':'ion-cube'}}"></i>
+                        <i class="icon {{menu.intereface_menu.menu=='settings'? 'ion-gear-a':menu.intereface_menu.menu=='records'? 'ion-folder': menu.intereface_menu.menu=='your chats'? 'ion-chatboxes': menu.intereface_menu.menu=='chats'? 'ion-chatboxes':menu.intereface_menu.menu=='packages'? 'ion-cube':menu.intereface_menu.menu=='library'? 'ion-ios-book':menu.intereface_menu.menu=='pathology'? 'ion-erlenmeyer-flask':menu.intereface_menu.menu=='medicines'? 'ion-medkit':menu.intereface_menu.menu=='reminder'? 'ion-cube':'ion-cube'}}"></i>
                         <h2 class="menu-text" ng-if="apkLanguage == 'english'">{{menu.intereface_menu.menu|capitalizeEach}}</h2>
                         <h2 class="menu-text" ng-init="item = menu.intereface_menu.menu" ng-if="apkLanguage != 'english'">{{menutext[item][language]}}</h2>
                     </ion-item>
