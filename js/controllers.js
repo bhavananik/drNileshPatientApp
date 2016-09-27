@@ -956,8 +956,8 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
                         $scope.menuItem = response.data.menuItem;
                         $scope.cattext = response.data.dataCat;
                         $scope.language = response.data.lang.language;
-                        //$rootScope.apkLanguage = response.data.lang.language;
-                        //window.localStorage.setItem('apkLanguage', response.data.lang.language);
+                        $scope.apkLanguage = response.data.lang.language;
+                        window.localStorage.setItem('apkLanguage', response.data.lang.language);
                     }
                     $http({
                         method: 'GET',
