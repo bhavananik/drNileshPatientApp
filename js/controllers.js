@@ -114,27 +114,27 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
                                         url: domain + 'get-login-logout-log',
                                         params: {userId: window.localStorage.getItem('id'), interface: $scope.interface, type: $scope.userType, action: $scope.action}
                                     }).then(function successCallback(response) {
+                                        $http({
+                                            method: 'GET',
+                                            url: domain + 'get-login',
+                                            params: {id: window.localStorage.getItem('id'), interface: $scope.interface}
+                                        }).then(function successCallback(response) {
+                                            console.log(response.data.lang.language);
+                                            $scope.langtext = response.data.data;
+                                            $scope.language = response.data.lang.language;
+
+                                            //$scope.apkLanguage = window.localStorage.setItem('apkLanguage', response.data.lang.language);
+
+                                            window.localStorage.setItem('apkLanguage', response.data.lang.language);
+                                            $scope.apkLanguage = window.localStorage.getItem('apkLanguage');
+                                            $scope.sideMenu();
+
+                                        }, function errorCallback(response) {
+                                            console.log(response);
+                                        });
                                     }, function errorCallback(e) {
                                         console.log(e);
                                     });
-//                                    $http({
-//                                        method: 'GET',
-//                                        url: domain + 'get-login',
-//                                        params: {id: window.localStorage.getItem('id'), interface: $scope.interface}
-//                                    }).then(function successCallback(response) {
-//                                        console.log(response.data.lang.language);
-//                                        $scope.langtext = response.data.data;
-//                                        $scope.language = response.data.lang.language;
-//                                       
-//                                            //$scope.apkLanguage = window.localStorage.setItem('apkLanguage', response.data.lang.language);
-//
-//                                            window.localStorage.setItem('apkLanguage', response.data.lang.language);
-//                                            $scope.apkLanguage = window.localStorage.getItem('apkLanguage');
-//                                            $scope.sideMenu();
-//                                        
-//                                    }, function errorCallback(response) {
-//                                        console.log(response);
-//                                    });
 
                                     try {
                                         window.plugins.OneSignal.getIds(function (ids) {
@@ -999,7 +999,7 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
 //                }, function errorCallback(response) {
 //
 //                });
-                console.log("lang  IF " + window.localStorage.getItem('apkLanguage') );
+                console.log("lang  IF " + window.localStorage.getItem('apkLanguage'));
             } else {
                 window.localStorage.setItem('apkLanguage', 'english');
                 $scope.apkLanguage = window.localStorage.getItem('apkLanguage');
