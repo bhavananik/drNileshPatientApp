@@ -38,7 +38,7 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
 })
 
 // APP
-        .controller('AppCtrl', function ($scope, $ionicModal, $http, $state, $ionicConfig, $rootScope, $ionicLoading, $ionicHistory, $timeout) {
+        .controller('AppCtrl', function ($scope, $ionicModal, $http, $state, $ionicConfig, $rootScope, $ionicLoading, $ionicHistory, $timeout,$ionicScrollDelegate) {
             $rootScope.imgpath = domain + "/public/frontend/user/";
             $rootScope.attachpath = domain + "/public";
             console.log('sdad---' + $rootScope.userLogged + " == " + window.localStorage.getItem('id'));
@@ -226,6 +226,7 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
                             processData: false,
                             success: function (response) {
                                 window.localStorage.setItem('code', response.otpcode);
+                                 $ionicScrollDelegate.scrollTop([true]);
                                 store($scope.user);
                                 alert('Kindly check your mobile for OTP')
                                 $('#checkotp').removeClass('hide');
@@ -680,6 +681,7 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
                     processData: false,
                     success: function (response) {
                         window.localStorage.setItem('code', response.otpcode);
+                        $ionicScrollDelegate.scrollTop([true]);
                         store($scope.user);
                         alert('Kindly check your mobile for OTP')
                         $state.go('auth.check-otp', {}, {reload: true});
@@ -1001,7 +1003,7 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
 
 
             $scope.checkRedirect = function (url) {
-                alert(url);
+                //alert(url);
                 $rootScope.$broadcast('showLoginModal', $scope, function () {
                     console.log("logged in fail");
 

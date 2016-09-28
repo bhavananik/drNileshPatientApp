@@ -9524,7 +9524,12 @@ input, button, select, textarea,.tab-item
     color: #ec7935;  cursor: pointer;}
     ion-slide img{max-width: 100%; border-bottom: 2px #ccc solid;     padding: 10px;}
 .mtm-5{margin-top: -5px !important;}
-
+.textwrapterms .checkbox .item-content,
+.textwrapterms .item-content,
+.textwrapterms .list .item
+{overflow: inherit !important;
+    white-space: inherit !important;
+    text-overflow: inherit !important;}
 
 
 
