@@ -7230,6 +7230,8 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
             $scope.cards = [];
             $scope.curDate = new Date();
             $scope.interface = window.localStorage.getItem('interface_id');
+            console.log("Interface "+ $scope.interface);
+             console.log("UserID  "+ window.localStorage.getItem('id'));
             $scope.doRefresh = function () {
                 $scope.$broadcast('scroll.refreshComplete');
             };
