@@ -6104,7 +6104,7 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
 
         })
 
-        .controller('PastChatCtrl', function ($scope, $ionicLoading, $http, $stateParams, $timeout, $filter) {
+        .controller('PastChatCtrl', function ($scope,$state, $ionicLoading, $http, $stateParams, $timeout, $filter) {
             $scope.chatId = $stateParams.id;
             window.localStorage.setItem('chatId', $stateParams.id);
             $scope.partId = get('id');
@@ -6185,6 +6185,20 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
                 $scope.appendprevious();
                 $scope.movebottom();
             }, 1000);
+            
+            $scope.getchatsharedata = function () {
+                $http({
+                    method: 'GET',
+                    url: domain + 'contentlibrary/get-video-chat-share-data',
+                    params: {userId: window.localStorage.getItem('id'), chatId: $scope.chatId}
+                }).then(function sucessCallback(response) {
+                    console.log(response.data);
+                    $scope.videodata = response.data;
+                    $state.go('app.chat-video-share', {reload: true});
+                }, function errorCallback(response) {
+                    console.log(response.responseText);
+                });
+            }
         })
 
         .controller('JoinChatCtrl', function ($scope, $http, $stateParams, $sce, $ionicLoading) {
@@ -7639,7 +7653,7 @@ angular.module('PasswordConfirm', []).directive('changePasswordC', function () {
                 $scope.modal = modal;
             });
             $scope.playVideo = function (archiveid) {
-                $ionicLoading.show({template: 'Retriving Video...'});
+                $ionicLoading.show({template: 'Preparing Video...'});
                 $http({
                     method: 'GET',
                     url: domain + 'contentlibrary/play-recent-video',
