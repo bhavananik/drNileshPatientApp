@@ -29,10 +29,12 @@
             <p>Swipe right to mark a task as completed or swipe left to mark it as missed</p>
 
         </div>
-        <div class="citem item-divider">{{curDate |dateFormat3}}</div>
+        <div class="citem item-divider" ng-if="reminder!=''" >{{curDate |dateFormat3}}</div>
+        <td-cards ng-if="reminder==''">
+           <p style="text-align:center">No reminder's found</p>
+        </td-cards>
 
-
-        <td-cards>
+        <td-cards ng-if="reminder!=''">
             <td-card id="td-card" ng-repeat="rems in reminder"
                      on-transition-left="transitionLeft(rems.id)"
                      on-transition-right="transitionRight(rems.id)"
