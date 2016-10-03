@@ -30,13 +30,6 @@
                             <span class='error text-center'  style="color:#e42012;" ng-model='loginError' ng-bind-html='loginError' ></span>
                         </div>
 
-
-
-
-
-
-
-
                         <div class="item-body bottom-content">
                             <button type="submit" class="button button-balanced button-block"  ng-disabled="(selected_tab == 'Login') ? (login_form.email.$invalid || login_form.password.$invalid) : ((selected_tab == 'Phone') ? (login_form.user_phone.$invalid || login_form.user_pin.$invalid) : false)">
                                 Sign In
@@ -79,10 +72,10 @@
                         <div class="item item-divider">Confirm Password</div> 
                         <label class="item item-input">
                             <input type="password" name="cpassword" required ng-model="user.cpassword"  placeholder="Confirm Password" ng-minlength="6" change-password-c="{{user.password === user.cpassword}}"/>
-                            <div ng-show="signupForm.cpassword.$error.noMatch1" class="serror">Passwords do not match.</div>
+                            <div ng-show="signupForm.cpassword.$dirty && signupForm.cpassword.$error.noMatch1" class="serror">Passwords do not match.</div>
                             <div ng-show="signupForm.password.$error.minlength" class="serror">Confirm Password is too short.</div>
                         </label>
-
+ 
 
 
 <ion-list class="textwrapterms">
