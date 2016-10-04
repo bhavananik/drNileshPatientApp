@@ -9189,6 +9189,7 @@ input[type="date"]:before{
 .fieldvalue{ padding:10px; float: left; width:100%;     text-indent: 6px;}
 
 .spceinfields .fieldvalue{margin-bottom: 15px; border-bottom: 1px #ddd solid;}
+.spceinfields{float: left; width: 100%; margin-bottom: 60px;}
 
 .f22{font-size: 22px;}
 
