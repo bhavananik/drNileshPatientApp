@@ -1044,6 +1044,57 @@ angular.module('your_app_name', [
                             }
                         }
                     })
+
+                     .state('app.video-broadcast', {
+                        cache: false,
+                        url: "/video-broadcast",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/video-broadcast.html",
+                                controller: 'VideoBroadcastCtrl'
+                            }
+                        }
+                    })
+                     .state('app.video-broadcast-create', {
+                        cache: false,
+                        url: "/video-broadcast-create",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/video-broadcast-create.html",
+                                controller: 'VideoBroadcastCreateCtrl'
+                            }
+                        }
+                    })
+                     .state('app.video-broadcast-stream', {
+                        cache: false,
+                        url: "/video-broadcast-stream/{session_id:string}/{token:string}/{publish:int}",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/video-broadcast-stream.html",
+                                controller: 'VideoBroadcastStreamCtrl'
+                            }
+                        }
+                    })
+                     .state('app.video-broadcast-interactive', {
+                        cache: false,
+                        url: "/video-broadcast-interactive/{session_id:string}/{token:string}/{publish:int}",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/video-broadcast-interactive.html",
+                                controller: 'VideoBroadcastInteractiveCtrl'
+                            }
+                        }
+                    })
+                     .state('app.schedule-video-broadcast', {
+                        cache: false,
+                        url: "/video-broadcast-schedule",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/video-broadcast-schedule.html",
+                                controller: 'VideoBroadcastScheduleCtrl'
+                            }
+                        }
+                    })
                     ;
 
             // if none of the above states are matched, use this as the fallback
